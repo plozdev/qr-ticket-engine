@@ -1,0 +1,27 @@
+# Local Architecture & Study Docs (Personal study notes)
+docs/
+
+# Build and binary directories
+target/
+**/target/
+build/
+**/build/
+
+# IDE and Editor files
+.idea/
+**/.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+**/.vscode/
+.classpath
+.project
+.settings/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
