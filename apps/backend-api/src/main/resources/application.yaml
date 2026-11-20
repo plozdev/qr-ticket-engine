@@ -1,3 +1,8 @@
 spring:
   application:
     name: backend-api
+security:
+  totp:
+    time-step-seconds: 30
+    algorithm: HmacSHA256
+
