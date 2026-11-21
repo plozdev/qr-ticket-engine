@@ -62,7 +62,7 @@ public class Ticket {
     @ColumnDefault("1")
     @Column(name = "version", nullable = false)
     @Version
-    private Long version = 1L;
+    private Long version;
 
     @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")
@@ -74,21 +74,5 @@ public class Ticket {
         this.userId = userId;
         this.ownerName = ownerName;
         this.secretKey = secretKey;
-        this.status = TicketStatus.ISSUED;
-        this.version = 1L;
-        this.createdAt = Instant.now();
-    }
-
-    public void markAsCheckedIn(String gateId) {
-        if (this.status != TicketStatus.ISSUED) {
-            throw new IllegalStateException("Vé đã bị hủy hoặc đã check-in rồi!");
-        }
-        this.status = TicketStatus.CHECKED_IN;
-        this.checkedInGate = gateId;
-        this.checkedInAt = Instant.now();
-    }
-
-    public void revoke() {
-        this.status = TicketStatus.REVOKED;
     }
 }
