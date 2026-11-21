@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -52,6 +53,11 @@ public class TicketServiceImpl implements TicketService {
     @Transactional
     public int executeCheckIn(Long ticketId, String gateId) {
         return ticketRepository.executeCheckIn(ticketId, gateId, Instant.now());
+    }
+
+    @Override
+    public List<Ticket> findAllByUserId(String userId) {
+        return ticketRepository.findAllByUserId(userId);
     }
 
 }
