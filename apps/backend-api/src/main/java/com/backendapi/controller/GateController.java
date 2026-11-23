@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/gates")
+@RequestMapping("/api/gates")
 @RequiredArgsConstructor
 @Tag(name = "Gate Check-In", description = "API dành cho thiết bị quét và cổng kiểm soát ra vào")
 public class GateController {
