@@ -21,14 +21,14 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     @Query("""
         UPDATE Ticket t 
         SET t.status = 'CHECKED_IN', 
-            t.checkedInGate = :gateId, 
+            t.checkedInGateId = :gateId, 
             t.checkedInAt = :now,
             t.version = t.version + 1
         WHERE t.id = :id AND t.status = 'ISSUED'
     """)
     int executeCheckIn(
             @Param("id") Long id,
-            @Param("gateId") String gateId,
+            @Param("gateId") Long gateId,
             @Param("now") Instant now
     );
 

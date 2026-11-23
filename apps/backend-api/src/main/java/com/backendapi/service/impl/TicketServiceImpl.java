@@ -51,11 +51,12 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     @Transactional
-    public int executeCheckIn(Long ticketId, String gateId) {
+    public int executeCheckIn(Long ticketId, Long gateId) {
         return ticketRepository.executeCheckIn(ticketId, gateId, Instant.now());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Ticket> findAllByUserId(String userId) {
         return ticketRepository.findAllByUserId(userId);
     }

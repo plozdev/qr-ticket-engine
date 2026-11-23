@@ -47,7 +47,7 @@ public class CheckInServiceConcurrencyTest {
         AtomicInteger failedCount = new AtomicInteger(0);
 
         for (int i = 0; i < threadCount; i++) {
-            final String gateId = "GATE_" + i;
+            final Long gateId = (long) ((i % 4) + 1);
             executor.submit(() -> {
                 readyLatch.countDown();
                 try {

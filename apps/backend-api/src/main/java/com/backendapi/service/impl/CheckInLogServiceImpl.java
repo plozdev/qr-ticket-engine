@@ -14,7 +14,7 @@ public class CheckInLogServiceImpl implements CheckInLogService {
     private final CheckInLogServiceRepo repo;
 
     @Override
-    public void recordLog(String ticketCode, String gateId, CheckInResultStatus status, String errorMessage) {
+    public void recordLog(String ticketCode, Long gateId, CheckInResultStatus status, String errorMessage) {
         CheckInLog log = new CheckInLog(ticketCode, gateId, status, errorMessage);
         repo.save(log);
     }

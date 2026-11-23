@@ -14,7 +14,8 @@ import java.time.Instant;
 @Entity
 @Table(name = "check_in_logs", indexes = {
         @Index(name = "idx_log_ticket_code", columnList = "ticket_code"),
-        @Index(name = "idx_log_scanned_at", columnList = "scanned_at")
+        @Index(name = "idx_log_scanned_at", columnList = "scanned_at"),
+        @Index(name = "idx_log_gate_id", columnList = "gate_id")
 })
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,10 +31,9 @@ public class CheckInLog {
     @Column(name = "ticket_code", nullable = false, length = 64, updatable = false)
     private String ticketCode;
 
-    @Size(max = 64)
     @NotNull
-    @Column(name = "gate_id", nullable = false, length = 64, updatable = false)
-    private String gateId;
+    @Column(name = "gate_id", nullable = false, updatable = false)
+    private Long gateId;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -43,12 +43,11 @@ public class CheckInLog {
     @Column(name = "error_message", length = 1000, updatable = false)
     private String errorMessage;
 
-    @NotNull
     @CreationTimestamp
     @Column(name = "scanned_at", nullable = false, updatable = false)
     private Instant scannedAt;
 
-    public CheckInLog(String ticketCode, String gateId, CheckInResultStatus result, String errorMessage) {
+    public CheckInLog(String ticketCode, Long gateId, CheckInResultStatus result, String errorMessage) {
         this.ticketCode = ticketCode;
         this.gateId = gateId;
         this.result = result;

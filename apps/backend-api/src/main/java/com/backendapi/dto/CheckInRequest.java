@@ -1,5 +1,6 @@
 package com.backendapi.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CheckInRequest {
+    @NotNull
     private UUID ticketCode;
+
+    @NotNull
     private String totpCode;
-    private String gateId;
+
+    @NotNull
+    private Long gateId;
 }

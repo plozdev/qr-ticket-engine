@@ -4,7 +4,6 @@ import com.backendapi.dto.CheckInRequest;
 import com.backendapi.dto.CheckInResultResponse;
 import com.backendapi.entity.Ticket;
 import com.backendapi.enums.CheckInResultStatus;
-import com.backendapi.repository.TicketRepository;
 import com.backendapi.service.CheckInLogService;
 import com.backendapi.service.CheckInService;
 import com.backendapi.service.TicketService;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -57,7 +55,7 @@ public class CheckInServiceImpl implements CheckInService {
                 .build();
     }
 
-    private CheckInResultResponse buildFailureResponse(String ticketCode, String ownerName, String gateId, String msg) {
+    private CheckInResultResponse buildFailureResponse(String ticketCode, String ownerName, Long gateId, String msg) {
         return CheckInResultResponse.builder()
                 .status("FAILED")
                 .ticketCode(ticketCode)

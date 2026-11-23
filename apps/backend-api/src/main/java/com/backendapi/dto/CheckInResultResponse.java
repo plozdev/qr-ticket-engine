@@ -15,7 +15,7 @@ public class CheckInResultResponse {
     private String status;
     private String ticketCode;
     private String ticketOwnerName;
-    private String gateId;
+    private Long gateId;
     private Instant scanTime;
     private String msg;
 }

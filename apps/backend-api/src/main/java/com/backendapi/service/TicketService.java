@@ -10,6 +10,6 @@ import java.util.UUID;
 public interface TicketService {
     Optional<QrPayloadResponse> getDynamicQrPayload(Long ticketId, String reqUserId);
     Optional<Ticket> findByTicketCode(UUID ticketCode);
-    int executeCheckIn(Long ticketId, String gateId);
     List<Ticket> findAllByUserId(String userId);
+    int executeCheckIn(Long ticketId, Long gateId);
 }

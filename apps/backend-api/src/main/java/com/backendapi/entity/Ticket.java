@@ -16,7 +16,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "tickets", indexes = {
         @Index(name = "idx_ticket_code", columnList = "ticket_code", unique = true),
-        @Index(name = "idx_user_id", columnList = "user_id")
+        @Index(name = "idx_user_id", columnList = "user_id"),
+        @Index(name = "idx_tickets_checked_in_gate_id", columnList = "checked_in_gate_id")
 })
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -52,20 +53,17 @@ public class Ticket {
     @Column(name = "status", nullable = false, length = 20)
     private TicketStatus status = TicketStatus.ISSUED;
 
-    @Size(max = 64)
-    @Column(name = "checked_in_gate", length = 64)
-    private String checkedInGate;
+    @Column(name = "checked_in_gate_id")
+    private Long checkedInGateId;
 
     @Column(name = "checked_in_at")
     private Instant checkedInAt;
 
-    @NotNull
     @ColumnDefault("1")
     @Column(name = "version", nullable = false)
     @Version
     private Long version;
 
-    @NotNull
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
