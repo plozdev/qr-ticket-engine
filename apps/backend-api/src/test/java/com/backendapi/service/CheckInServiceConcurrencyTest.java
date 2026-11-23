@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CheckInServiceConcurrencyTest {
 
     @Autowired
-    private CheckInService checkInService;
+    private TicketService ticketService;
 
     @Autowired
     private TicketRepository ticketRepository;
@@ -52,7 +52,7 @@ public class CheckInServiceConcurrencyTest {
                 readyLatch.countDown();
                 try {
                     startLatch.await();
-                    CheckInResultResponse response = checkInService.checkIn(
+                    CheckInResultResponse response = ticketService.checkIn(
                             new CheckInRequest(ticketCode, validTotp, gateId)
                     );
 
