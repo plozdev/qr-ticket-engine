@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -27,12 +28,12 @@ public class Ticket {
     private Long id;
 
     @NotNull
-    @Column(name = "ticket_code", nullable = false)
+    @Column(name = "ticket_code", nullable = false, updatable = false)
     private UUID ticketCode;
 
     @Size(max = 64)
     @NotNull
-    @Column(name = "user_id", nullable = false, length = 64)
+    @Column(name = "user_id", nullable = false, length = 64, updatable = false)
     private String userId;
 
     @Size(max = 255)
@@ -42,7 +43,7 @@ public class Ticket {
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "secret_key", nullable = false)
+    @Column(name = "secret_key", nullable = false, updatable = false)
     private String secretKey;
 
     @NotNull
@@ -65,9 +66,9 @@ public class Ticket {
     private Long version;
 
     @NotNull
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at", nullable = false)
-    private Instant createdAt = Instant.now();
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Instant createdAt;
 
     public Ticket(UUID ticketCode, String userId, String ownerName, String secretKey) {
         this.ticketCode = ticketCode;

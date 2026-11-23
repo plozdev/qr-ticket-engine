@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 
@@ -27,32 +27,31 @@ public class CheckInLog {
 
     @Size(max = 64)
     @NotNull
-    @Column(name = "ticket_code", nullable = false, length = 64)
+    @Column(name = "ticket_code", nullable = false, length = 64, updatable = false)
     private String ticketCode;
 
     @Size(max = 64)
     @NotNull
-    @Column(name = "gate_id", nullable = false, length = 64)
+    @Column(name = "gate_id", nullable = false, length = 64, updatable = false)
     private String gateId;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "result", nullable = false, length = 32)
+    @Column(name = "result", nullable = false, length = 32, updatable = false)
     private CheckInResultStatus result;
 
-    @Column(name = "error_message", length = 1000)
+    @Column(name = "error_message", length = 1000, updatable = false)
     private String errorMessage;
 
     @NotNull
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "scanned_at", nullable = false)
-    private Instant scannedAt = Instant.now();
+    @CreationTimestamp
+    @Column(name = "scanned_at", nullable = false, updatable = false)
+    private Instant scannedAt;
 
     public CheckInLog(String ticketCode, String gateId, CheckInResultStatus result, String errorMessage) {
         this.ticketCode = ticketCode;
         this.gateId = gateId;
         this.result = result;
         this.errorMessage = errorMessage;
-        this.scannedAt = Instant.now();
     }
 }
